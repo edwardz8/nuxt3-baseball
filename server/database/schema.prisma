@@ -1,0 +1,80 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id               Int       @id @default(autoincrement())
+  loginType        String?   @default("email")
+  password         String?
+  email            String?   @unique
+  name             String?
+  username         String?   @unique
+  session          Session[]
+  stripeCustomerId String?
+  comment          Comment[]
+}
+
+model Session {
+  id        Int       @id @default(autoincrement())
+  authToken String    @unique
+  user      User      @relation(fields: [userId], references: [id])
+  userId    Int
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+}
+
+model Like {
+  id       Int @id @default(autoincrement())
+  userId   Int
+  playerId Int
+}
+
+model Comment {
+  id        Int      @id @default(autoincrement())
+  user      User     @relation(fields: [userId], references: [id])
+  userId    Int
+  playerId  Int
+  comment   String
+  createdAt DateTime @default(now()) @db.Timestamptz(3)
+}
+
+model Hitter {
+  name             String
+  team             String
+  games            Int
+  plateAppearances Int
+  atBats           Int
+  hits             Int
+  doubles          Int
+  triples          Int
+  homeruns         Int
+  runs             Int
+  rbi              Int
+  walks            Int
+  strikeouts       Int
+  hbp              Int
+  stolenBases      Int
+  cs               Int
+  avg              Float
+  obp              Float
+  slugging         Float
+  ops              Float
+  wOBA             Float
+  wRCplus          Int
+  BsR              Float
+  fld              Float
+  off              Float
+  def              Float
+  war              Float
+  adp              Int
+  id               Int    @id
+}

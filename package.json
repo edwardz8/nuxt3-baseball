@@ -1,0 +1,30 @@
+{
+  "private": true,
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
+  },
+  "devDependencies": {
+    "@heroicons/vue": "^2.0.13",
+    "@nuxtjs/tailwindcss": "^6.2.0",
+    "@types/bcrypt": "^5.0.0",
+    "@types/uuid": "^9.0.0",
+    "nuxt": "3.0.0",
+    "prisma": "^4.8.0"
+  },
+  "dependencies": {
+    "@prisma/client": "^4.8.0",
+    "@vueuse/core": "^9.9.0",
+    "bcrypt": "^5.1.0",
+    "chart.js": "^4.1.1",
+    "preline": "^1.6.0",
+    "uuid": "^9.0.0",
+    "vue-chartjs": "^5.1.0"
+  },
+  "prisma": {
+    "schema": "server/database/schema.prisma"
+  }
+}
