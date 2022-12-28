@@ -35,13 +35,13 @@ watch(() => page.value, (newValue, oldValue) => {
       <h2 class="text-2xl mt-3 mb-4 text-center">All Hitters</h2>
       <ul class="prev-next-cont">
         <li class="link-item prev" @click="page -= 1" v-if="page !== 1">
-          <ArrowLeftIcon class="icon stroke" />
+          <!-- <ArrowLeftIcon class="icon stroke" /> -->
           <span> Previus </span>
         </li>
         <li v-else></li>
         <li class="link-item next" @click="page+=1" v-if="page !== lastPage">
           <span> Next </span>
-          <ArrowRightIcon class="icon stroke" />
+         <!--  <ArrowRightIcon class="icon stroke" /> -->
         </li>
       </ul>
       <div class="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-3 px-4">

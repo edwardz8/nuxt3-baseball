@@ -1,4 +1,4 @@
-import { CompatibilityEvent, sendError } from 'h3'
+import { CompatibilityEvent, sendError, readBody, eventHandler } from 'h3'
 import bcrypt from 'bcrypt'
 import { IUser } from '~/types/IUser';
 import { validateUser } from '~/server/services/userService';
@@ -6,8 +6,8 @@ import { createUser } from '~/server/database/repositories/userRepository';
 import { makeSession } from '~~/server/services/sessionService';
 import { RegistrationRequest } from '~~/types/IRegistration';
 
-export default async (event: CompatibilityEvent) => {
-    const body = await useBody(event)
+export default eventHandler(async (event: CompatibilityEvent) => {
+    const body = await readBody(event)
     const data = body.data as RegistrationRequest
 
     const validation = await validateUser(data)
@@ -30,4 +30,4 @@ export default async (event: CompatibilityEvent) => {
     const user = await createUser(userData)
 
     return await makeSession(user, event)
-}
+})

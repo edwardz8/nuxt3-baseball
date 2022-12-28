@@ -1,6 +1,7 @@
 import { useRouter, useState } from '#app'
 import { ISession } from '~~/types/ISession'
 import { IUser } from '~~/types/IUser'
+import { getCookie } from 'h3'
 
 export const useAuthCookie = () => useCookie('auth_token')
 
@@ -31,7 +32,7 @@ export async function registerWithEmail(
     name: string,
     email: string,
     password: string
-): Promise<FormValidation> {
+) {
 
     const { data, error } = await useFetch<ISession>('/api/auth/register', {
         method: 'POST',
@@ -53,7 +54,7 @@ export async function registerWithEmail(
 
     if (data) {
         useState('user').value = data
-        await useRouter().push('/blog')
+        await useRouter().push('/')
     }
 
 }
@@ -61,5 +62,5 @@ export async function registerWithEmail(
 export async function loginWithEmail(email: string, password: string) {
     const user = await $fetch<IUser>('/api/auth/login', { method: 'POST', body: { email: email, password: password } })
     useState('user').value = user
-    await useRouter().push('/blog')
+    await useRouter().push('/')
 }

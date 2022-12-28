@@ -1,5 +1,3 @@
-import { useFetch } from "@vueuse/core"
-
 export const getHitters = (params = {}) => {
     return new Promise(async (resolve, reject) => {
         try {
