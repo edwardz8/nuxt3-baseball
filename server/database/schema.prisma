@@ -18,7 +18,6 @@ model User {
   name             String?
   username         String?   @unique
   session          Session[]
-  stripeCustomerId String?
   comment          Comment[]
 }
 

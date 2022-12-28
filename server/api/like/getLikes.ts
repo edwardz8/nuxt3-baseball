@@ -1,7 +1,7 @@
 import { getLikesByUser } from '~/server/database/repositories/likeRepository';
 
-export default defineEventHandler(async (event) => {
-    const query = await useQuery(event)
+export default eventHandler(async (event) => {
+    const query = await getQuery(event)
     const playerId = query.playerId
 
     const likes = await getLikesByUser(playerId)
