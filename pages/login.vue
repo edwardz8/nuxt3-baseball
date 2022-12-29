@@ -18,23 +18,20 @@ const postLoginForm = async function () {
 </script>
 
 <template>
-  <div
-    class="h-screen bg-gradient-to-b from-white to-blue-200"
-  >
+  <div class="h-screen">
     <div class="flex items-center justify-center px-4 sm:px-6 lg:px-8">
-      <div class="max-w-md w-full space-y-8">
+      <div class="max-w-md w-full">
         <div>
-          <div class="h-25 w-25"></div>
           <div class="flex">
-            <img
+           <!--  <img
               class="mx-auto h-24 w-auto"
               src="/img/hockeyphone.png"
-              alt="roster.props logo"
-            />
+              alt="logo"
+            /> -->
             <h1
               class="py-9 text-center text-3xl font-extrabold text-gray-900"
             >
-              roster.props
+              fungo fantasy baseball
             </h1>
           </div>
 

@@ -11,6 +11,8 @@ $ npx prisma init
 $ npx prisma db push 
 $ npx prisma migrate dev
 
+<link rel="stylesheet" href="https://daigofuji.github.io/bbclub-font/css/bbclub-font.css">
+
 ## Setup
 
 Make sure to install the dependencies:

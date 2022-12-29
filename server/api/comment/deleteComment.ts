@@ -1,8 +1,7 @@
-import { H3Event } from 'h3';
 import { deleteComment } from '~/server/database/repositories/commentRepository';
 
 export default defineEventHandler(async (event) => {
-    const query = await getQuery(event)
+    const query = getQuery(event)
     const commentId = query.commentId
 
     const res = await deleteComment({ id: commentId })

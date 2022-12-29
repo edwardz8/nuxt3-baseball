@@ -25,12 +25,12 @@ onClickOutside(userActions, () => (hideActions.value = true));
     <span class="mr-2">
       <strong>{{ user.username }}</strong>
     </span>
-    <img
+   <!--  <img
       @click="hideActions = !hideActions"
       :src="avatar(user.avatarUrl)"
       class="rounded-full w-10 h-10 mr-2"
       alt="avatar"
-    />
+    /> -->
 
     <ul
       :class="[{ hidden: hideActions }]"

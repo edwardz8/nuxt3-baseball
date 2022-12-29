@@ -1,8 +1,7 @@
-// import { CompatibilityEvent } from 'h3'
 import { addComment } from '~/server/database/repositories/commentRepository';
 
-export default async () => {
-    const body = await useBody(event)
+export default defineEventHandler(async (event) => {
+    const body = await readBody(event)
 
     const commentData = {
         userId: body.userId,
@@ -13,8 +12,5 @@ export default async () => {
     const comment = await addComment(commentData)
 
     return comment
-}
-function useBody(event: Event | undefined) {
-    throw new Error('Function not implemented.');
-}
+})
 

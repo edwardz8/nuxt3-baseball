@@ -1,21 +1,21 @@
 <script setup lang="ts">
-import { ref } from 'vue';
-import { useRoute } from 'vue-router';
+import { useState } from "#app";
+import { addComment, getPlayerComments, deleteComment } from "~/composables/useComment";
 
 const route = useRoute();
 const playerComments = ref([]);
 const comment = ref("");
 const commenting = ref(false);
-// const user = useState("user");
+const user = useState("user");
 
-// playerComments.value = await getPlayerComments(route.params.player);
+playerComments.value = await getPlayerComments(route.params.player);
 
-/* const userComment = computed(() => {
+const userComment = computed(() => {
   if (!user.value) return false 
   const index = playerComments.value.findIndex(comment => comment.userId === user.value.id)
 
   return index > -1
-}) */
+})
 
 /*
 =================================
@@ -23,7 +23,7 @@ const commenting = ref(false);
 =================================
 */
 
-/* async function commentPlayer() {
+async function commentPlayer() {
   if (!user.value) return useRouter().push('/login')
   commenting.value = true;
   try {
@@ -39,13 +39,13 @@ const commenting = ref(false);
   } finally {
     commenting.value = false;
   }
-} */
+}
 
-/* async function deletePlayerComment(id, index) {
+async function deletePlayerComment(id, index) {
   await deleteComment(id);
   playerComments.value.splice(index, 1);
 }
- */
+
 </script>
 <template>
   <!-- Comments -->
@@ -112,6 +112,4 @@ const commenting = ref(false);
       </div>
     </div>
   </div>
-
-  <!--  -->
 </template>

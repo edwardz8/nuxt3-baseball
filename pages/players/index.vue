@@ -1,32 +1,43 @@
 <script setup lang="ts">
-import { getHitters } from '@/composables/useHitters'
-// import { ArrowLeftIcon, ArrowRightIcon } from '@heroicons/vue';
+import { getHitters } from "@/composables/useHitters";
+// import { ArrowLeftIcon, ArrowRightIcon } from "@heroicons/vue";
+// import { useState } from "#app";
+// import { getUserLikes, addUserLikes, removeUserLikes } from "~/composables/useLike";
 
-const { data } = await getHitters()
-const perpage = ref(20)
-const page = ref(1)
-const total = data.value.length
+// const user = useState("user");
+const route = useRoute();
+const router = useRouter();
 
-const route = useRoute()
-const router = useRouter()
+const { data } = await getHitters();
+const perpage = ref(20);
+const page = ref(1);
+const total = data.value.length;
 
 onMounted(() => {
-  console.log('mounted')
-  if (route.query.page)
-    page.value = +route.query.page
-})
+  console.log("mounted");
+  if (route.query.page) page.value = +route.query.page;
+});
+
+// const player = ref(null);
+const config = useRuntimeConfig();
+// const playerLikes = ref(null);
 
 const hitters = computed(() => {
-  return data.value.slice((page.value - 1) * perpage.value, page.value * perpage.value)
-})
+  return data.value.slice((page.value - 1) * perpage.value, page.value * perpage.value);
+});
 
 const lastPage = computed(() => {
-  return Math.floor(total / perpage.value)
-})
+  return Math.floor(total / perpage.value);
+});
 
-watch(() => page.value, (newValue, oldValue) => {
-  router.push(`/players?page=${newValue}`)
-})
+watch(
+  () => page.value,
+  (newValue, oldValue) => {
+    router.push(`/players?page=${newValue}`);
+  }
+);
+
+/* METHODS */
 </script>
 
 <template>
@@ -39,13 +50,15 @@ watch(() => page.value, (newValue, oldValue) => {
           <span> Previus </span>
         </li>
         <li v-else></li>
-        <li class="link-item next" @click="page+=1" v-if="page !== lastPage">
+        <li class="link-item next" @click="page += 1" v-if="page !== lastPage">
           <span> Next </span>
-         <!--  <ArrowRightIcon class="icon stroke" /> -->
+          <!-- <ArrowRightIcon class="icon stroke" /> -->
         </li>
       </ul>
-      <div class="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-3 px-4">
-        <Hitters :hitter="hitter" v-for="hitter in hitters" :key="hitter.id" />
+      <div
+        class="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-3 px-4"
+      >
+        <hitter :hitter="hitter" v-for="hitter in hitters" :key="hitter.id" />
       </div>
     </section>
   </main>
@@ -55,7 +68,7 @@ watch(() => page.value, (newValue, oldValue) => {
 .prev-next-cont {
   @apply flex gap-4 justify-between p-4 border border-slate-200 rounded-lg;
 }
-.link-item  {
+.link-item {
   @apply flex gap-2 cursor-pointer;
 }
 </style>
