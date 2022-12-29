@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useRoute } from 'vue-router'
-import getHitterById from '../../../server/api/hitter/getHitterById';
+import { getHitterById } from '~/composables/useHitters'
 // import matchTeamImage from "../../../methods.js";
 
 const route = useRoute();
