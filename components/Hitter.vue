@@ -42,23 +42,21 @@ function unlikePlayer(id, playerId) {
 </script>
 
 <template>
-  <div
-    class="mt-2 bg-white border shadow-sm rounded-xl dark:bg-gray-900 dark:border-gray-800 dark:shadow-slate-800/[.7]"
-  >
+  <div class="mt-2 bg-white border rounded-md bg-stone-200 hover:bg-stone-100">
     <!-- <img class="mx-auto rounded-t-xl w-32"
       :src="matchTeamLogo(props.hitter.team)"
       alt="player team logo"
     /> -->
     <div class="p-4 md:p-5">
-      <h3 class="text-lg font-bold text-gray-800 dark:text-white">
+      <h3 class="text-lg font-bold text-stone-800">
         {{ props.hitter.name }}
       </h3>
-      <p class="mt-1 text-gray-800 dark:text-gray-400">
+      <p class="mt-1 text-stone-900 font-semibold">
         {{ props.hitter.team }}
         <br />
       </p>
       <NuxtLink
-        class="mt-3 py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-blue-500 text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800"
+        class="mt-3 py-3 px-3 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-stone-800 text-white hover:bg-emerald-300 hover:text-stone-900 focus:outline-none focus:ring-2 focus:ring-emeerald-300 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800"
         :to="`/players/` + props.hitter.id"
       >
         View Player
@@ -69,7 +67,7 @@ function unlikePlayer(id, playerId) {
         <button
           v-if="isLiked && userId"
           @click="unlikePlayer(userLike.id, props.hitter.id)"
-          class="text-sm mt-1 py-2 px-2 inline-flex justify-center items-center gap-2 font-semibold text-blue-500 hover:text-gray-300"
+          class="text-sm mt-1 py-2 px-2 inline-flex justify-center items-center gap-2 font-semibold text-stone-700 hover:text-stone-900"
         >
           <svg
             width="24"

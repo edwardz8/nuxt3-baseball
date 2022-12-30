@@ -87,7 +87,7 @@ async function unlikePlayer(id) {
         <button
           v-if="isLiked"
           @click="unlikePlayer(userLike.id)"
-          class="mt-3 py-2 px-2 inline-flex justify-center items-center gap-2 rounded-md border-2 bg-gray-900 border-gray-800 text-gray-100 hover:border-blue-500 font-semibold text-gray-900 focus:outline-none transition-all text-sm"
+          class="mt-3 py-2 px-2 inline-flex justify-center items-center gap-2 rounded-md border-2 bg-stone-400 border-stone-400 text-stone-100 hover:bg-stone-900 hover:border-stone-900 font-semibold text-stone-900 focus:outline-none transition-all text-sm"
         >
           <svg
             width="24"
