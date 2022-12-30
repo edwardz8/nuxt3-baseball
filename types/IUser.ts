@@ -6,5 +6,4 @@ export interface IUser {
     password?: string
     email?: string
     avatarUrl?: string
-    stripeCustomerId?: string | null
 }

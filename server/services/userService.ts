@@ -12,14 +12,13 @@ export async function validateUser(data: RegistrationRequest): Promise<FormValid
     return { hasErrors: false }
 }
 
-export function sanitizeUserForFrontend(user: IUser | undefined): IUser {
+export function sanitizeUserForFrontend(user: IUser | undefined) {
     if (!user) {
         return user
     }
 
     delete user.password
-    delete user.loginType 
-    delete user.stripeCustomerId
+    delete user.loginType
 
     return user 
 }

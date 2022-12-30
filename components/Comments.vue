@@ -8,7 +8,7 @@ const comment = ref("");
 const commenting = ref(false);
 const user = useState("user");
 
-playerComments.value = await getPlayerComments(route.params.player);
+playerComments.value = await getPlayerComments(route.params.id);
 
 const userComment = computed(() => {
   if (!user.value) return false 
@@ -29,7 +29,7 @@ async function commentPlayer() {
   try {
     const commentRes = await addComment({
       userId: user.value.id,
-      playerId: +route.params.player,
+      playerId: +route.params.id,
       comment: comment.value,
     });
     playerComments.value.unshift({ ...commentRes, user: user.value });
@@ -50,20 +50,20 @@ async function deletePlayerComment(id, index) {
 <template>
   <!-- Comments -->
   <div
-    class="p-4 bg-white border-t rounded-none rounded-md dark:bg-gray-800 dark:border-gray-700"
+    class="p-4 border-t rounded-none rounded-md bg-gray-400 border-gray-400"
     role="alert"
   >
-    <h3 class="ml-3 font-bold mb-3">Comments</h3>
-    <form class="w-full d-flex flex-col">
+    <h3 class="font-bold mb-3">Comments</h3>
+    <form @submit.prevent="commentPlayer" class="w-full d-flex flex-col">
       <input
         v-model="comment"
         required
         type="text"
         placeholder="Enter Comment"
-        class="py-3 px-4 block w-full border focus:outline-none border-gray-200 rounded-md text-sm dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400"
+        class="py-3 px-4 block w-full border focus:outline-none rounded-md text-sm bg-gray-800 border-gray-700 text-gray-400"
       />
       <button
-        class="ml-auto block w-20 mt-2 py-2 px-2 rounded-md border-2 border-gray-900 font-semibold text-gray-800 hover:bg-gray-200 hover:border-gray-800 focus:outline-none transition-all text-sm dark:hover:bg-gray-900 dark:border-gray-900 dark:hover:border-gray-900 dark:text-white dark:focus:ring-gray-900 dark:focus:ring-offset-gray-800"
+        class="ml-auto block w-20 mt-2 py-2 px-2 rounded-md border-2 border-gray-900 font-semibold text-gray-800 hover:bg-gray-200 hover:border-gray-800 focus:outline-none transition-all text-sm hover:bg-gray-900 border-gray-900 hover:border-gray-900 text-white focus:ring-gray-900 focus:ring-offset-gray-800"
       >
         <div
           v-if="commenting"
@@ -84,7 +84,7 @@ async function deletePlayerComment(id, index) {
         :key="comment.id"
       >
         <div class="flex gap-3 items-center">
-          <img src="/img/footballguy2.jpg" class="rounded-full w-10 h-10" alt="avatar" />
+          <!-- <img src="/img/footballguy2.jpg" class="rounded-full w-10 h-10" alt="avatar" /> -->
           <div>
             <h4 class="text-base m-0 leading-3">
               {{ comment.user.name }}
@@ -106,7 +106,7 @@ async function deletePlayerComment(id, index) {
             </svg>
           </button>
         </div>
-        <p class="text-base mt-2 text-gray-700 dark:text-gray-400 ml-12">
+        <p class="text-base mt-2 text-gray-900">
           {{ comment.comment }}
         </p>
       </div>

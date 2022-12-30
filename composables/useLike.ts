@@ -2,7 +2,7 @@ import { useState } from '#app'
 import { IUser } from '~~/types/IUser'
 
 export async function getUserLikes(playerId: string) {
-    const like = await $fetch('/api/like/getLikes?playerId=' + playerId, { method: 'GET' })
+    const like = await useFetch('/api/like/getLikes?playerId=' + playerId, { method: 'GET' })
     return like
 }
 

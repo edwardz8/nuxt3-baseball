@@ -1,7 +1,7 @@
 import prisma from "../client";
 import { IUser } from '~/types/IUser';
 
-export async function getUserByEmail(email: string): Promise<IUser> {
+export async function getUserByEmail(email: string) {
   return await prisma.user.findUnique({
     where: {
       email: email,
@@ -13,7 +13,7 @@ export async function getUserByEmail(email: string): Promise<IUser> {
   })
 }
 
-export async function getUserByEmailWithPass(email: string): Promise<IUser> {
+export async function getUserByEmailWithPass(email: string) {
   return await prisma.user.findUnique({
     where: {
       email: email,
@@ -26,7 +26,7 @@ export async function getUserByEmailWithPass(email: string): Promise<IUser> {
   })
 }
 
-export async function getUserByUserName(username: string): Promise<IUser> {
+export async function getUserByUserName(username: string) {
   return await prisma.user.findUnique({
     where: {
       username: username,
@@ -52,7 +52,7 @@ export async function createUser(data: IUser) {
   return user
 }
 
-export async function getUserById(id: number): Promise<IUser> {
+export async function getUserById(id: number) {
   return await prisma.user.findUnique({
     where: {
       id: id,
@@ -61,21 +61,6 @@ export async function getUserById(id: number): Promise<IUser> {
       id: true,
       username: true,
       email: true,
-      stripeCustomerId: true,
-    },
-  })
-}
-
-export async function getUserByStripeCustomerId(stripeCustomerId: string): Promise<IUser> {
-  return await prisma.user.findFirst({
-    where: {
-      stripeCustomerId: stripeCustomerId,
-    },
-    select: {
-      id: true,
-      username: true,
-      email: true,
-      stripeCustomerId: true,
     },
   })
 }

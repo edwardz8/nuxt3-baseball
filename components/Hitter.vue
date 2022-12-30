@@ -7,10 +7,10 @@ const props = defineProps({
     type: Object,
     required: true,
   },
-  /* likes: {
-    type: Array<ILike>
+  likes: {
+    type: Array,
   },
-  userId: { type: Number, default: undefined } */
+  userId: { type: Number, default: undefined },
 });
 
 const emit = defineEmits(["like-player", "unlike-player"]);
@@ -25,6 +25,7 @@ const userLike = computed(() => {
 
 const isLiked = computed(() => {
   if (!props.userId) return false;
+  if (props.likes.length === 0) return false;
   const index = props.likes.findIndex((like) => {
     return like.userId === props.userId;
   });
@@ -41,7 +42,9 @@ function unlikePlayer(id, playerId) {
 </script>
 
 <template>
-  <div class="mt-2 bg-white border shadow-sm rounded-xl dark:bg-gray-900 dark:border-gray-800 dark:shadow-slate-800/[.7]" >
+  <div
+    class="mt-2 bg-white border shadow-sm rounded-xl dark:bg-gray-900 dark:border-gray-800 dark:shadow-slate-800/[.7]"
+  >
     <!-- <img class="mx-auto rounded-t-xl w-32"
       :src="matchTeamLogo(props.hitter.team)"
       alt="player team logo"
@@ -62,9 +65,9 @@ function unlikePlayer(id, playerId) {
       </NuxtLink>
 
       <!-- Likes -->
-      <!--  <div>
+      <div>
         <button
-          v-if="isLiked"
+          v-if="isLiked && userId"
           @click="unlikePlayer(userLike.id, props.hitter.id)"
           class="text-sm mt-1 py-2 px-2 inline-flex justify-center items-center gap-2 font-semibold text-blue-500 hover:text-gray-300"
         >
@@ -83,7 +86,7 @@ function unlikePlayer(id, playerId) {
           <span>{{ likesCount }} Likes</span>
         </button>
         <button
-          v-else
+          v-else-if="userId"
           type="button"
           @click="likePlayer(props.hitter.id)"
           class="text-sm mt-1 py-2 px-2 inline-flex justify-center items-center gap-2 font-semibold text-gray-400 hover:text-gray-300"
@@ -104,7 +107,7 @@ function unlikePlayer(id, playerId) {
           </svg>
           <span>{{ likesCount }} Likes</span>
         </button>
-      </div> -->
+      </div>
     </div>
   </div>
 </template>

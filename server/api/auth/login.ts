@@ -1,10 +1,10 @@
 import { sanitizeUserForFrontend } from '~~/server/services/userService';
 import bcrypt from 'bcrypt'
 import { getUserByEmailWithPass } from '~/server/database/repositories/userRepository';
-import { CompatibilityEvent, sendError, readBody, eventHandler } from "h3"
+import { sendError, readBody, eventHandler } from "h3"
 import { makeSession } from '~~/server/services/sessionService';
 
-export default eventHandler(async (event: CompatibilityEvent) => {
+export default eventHandler(async (event) => {
     const body = await readBody(event)
     const email: string = body.email
     const password: string = body.password
@@ -14,8 +14,8 @@ export default eventHandler(async (event: CompatibilityEvent) => {
         return sendError(event, createError({ statusCode: 423, statusMessage: 'Wrong Email' }))
     }
 
-    const isPasswordCorrect = await bcrypt.compare(password, user.password)
-    console.log(password, user, isPasswordCorrect)
+    const isPasswordCorrect = bcrypt.compare(password, user.password)
+    // console.log(password, user, isPasswordCorrect)
 
     if (!isPasswordCorrect) {
         return sendError(event, createError({ statusCode: 423, statusMessage: 'Wrong Password' }))

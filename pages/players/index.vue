@@ -1,26 +1,34 @@
 <script setup lang="ts">
 import { getHitters } from "@/composables/useHitters";
-// import { ArrowLeftIcon, ArrowRightIcon } from "@heroicons/vue";
-// import { useState } from "#app";
-// import { getUserLikes, addUserLikes, removeUserLikes } from "~/composables/useLike";
+import { getUserLikes, addUserLike, removeUserLike } from "~/composables/useLike";
 
-// const user = useState("user");
+const user = useState("user");
 const route = useRoute();
 const router = useRouter();
+const ids = ref("");
 
-const { data } = await getHitters();
+/* pagination */
 const perpage = ref(20);
 const page = ref(1);
+const playerLikes = ref(null);
+
+const { data } = await getHitters();
+
 const total = data.value.length;
 
+data.value.forEach((player) => {
+  ids.value += player.id + ",";
+});
+
+const playersLikesRes = await getUserLikes(ids.value);
+
+playerLikes.value = playersLikesRes.data.value;
+
 onMounted(() => {
-  console.log("mounted");
   if (route.query.page) page.value = +route.query.page;
 });
 
-// const player = ref(null);
 const config = useRuntimeConfig();
-// const playerLikes = ref(null);
 
 const hitters = computed(() => {
   return data.value.slice((page.value - 1) * perpage.value, page.value * perpage.value);
@@ -30,14 +38,44 @@ const lastPage = computed(() => {
   return Math.floor(total / perpage.value);
 });
 
+const playerLikesById = (id) => {
+  return playerLikes.value[id] ? playerLikes.value[id] : [];
+};
+
+const addlike = async (id) => {
+  if (user)
+    try {
+      const res = await addUserLike({
+        userId: user.value.id,
+        playerId: id,
+      });
+
+      if (playerLikes.value[id]) {
+        playerLikes.value[id].push(res);
+      } else {
+        var likes = playerLikes.value;
+        likes[id] = [{ ...res }];
+        playerLikes.value = likes;
+      }
+    } catch (e) {}
+};
+
+const unlikePlayer = async (data) => {
+  try {
+    await removeUserLike(data.id);
+    const index = playerLikes.value[data.playerId].findIndex(
+      (like) => like.id === data.id
+    );
+    playerLikes.value[data.playerId].splice(index, 1);
+  } catch (e) {}
+};
+
 watch(
   () => page.value,
   (newValue, oldValue) => {
     router.push(`/players?page=${newValue}`);
   }
 );
-
-/* METHODS */
 </script>
 
 <template>
@@ -47,7 +85,7 @@ watch(
       <ul class="prev-next-cont">
         <li class="link-item prev" @click="page -= 1" v-if="page !== 1">
           <!-- <ArrowLeftIcon class="icon stroke" /> -->
-          <span> Previus </span>
+          <span> Previous </span>
         </li>
         <li v-else></li>
         <li class="link-item next" @click="page += 1" v-if="page !== lastPage">
@@ -58,7 +96,15 @@ watch(
       <div
         class="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-3 px-4"
       >
-        <hitter :hitter="hitter" v-for="hitter in hitters" :key="hitter.id" />
+        <hitter
+          :hitter="hitter"
+          v-for="hitter in hitters"
+          :key="hitter.id"
+          @like-player="addlike"
+          :likes="playerLikesById(hitter.id)"
+          :user-id="user ? user.id : null"
+          @unlike-player="unlikePlayer"
+        />
       </div>
     </section>
   </main>
