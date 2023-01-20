@@ -18,7 +18,7 @@ const user = useState("user");
           <div class="flex items-center justify-end md:flex-1 lg:w-0">
             <User v-if="user" :user="user" />
 
-            <li class="link">
+            <!-- <li class="link">
               <nuxt-link
                 v-if="!user"
                 to="/register"
@@ -26,7 +26,7 @@ const user = useState("user");
               >
                 Sign up
               </nuxt-link>
-            </li>
+            </li> -->
 
             <li class="link">
               <nuxt-link
