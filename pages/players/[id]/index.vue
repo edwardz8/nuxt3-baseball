@@ -57,13 +57,12 @@ async function unlikePlayer(id) {
 
 <template>
   <main>
-    <section>
-      <h2 class="text-2xl mt-3 mb-4 text-center">Team Page</h2>
+    <section class="mx-auto container">
+      <h2 class="text-2xl mt-3 mb-4 text-center">Player Profile</h2>
       <p class="text-md mb-4 text-center">
         Sign in or register to like and comment on your favorite plays
       </p>
-      <!--  <off-canvas :player="player" /> -->
-      <div v-if="player" class="gap-3 px-4">
+      <div v-if="player">
         <div class="p-4 md:p-5">
           <h2 class="text-2xl font-bold text-gray-800 text-center">
             {{ player.name }}
@@ -76,14 +75,8 @@ async function unlikePlayer(id) {
           <h5 class="text-md font-bold text-gray-800 text-center">
             {{ player?.team }}
           </h5>
-          <p>Hits: {{ player.hits }}</p>
-          <p>Games: {{ player.games }}</p>
-          <p>Home Runs: {{ player.homeruns }}</p>
-          <p>Doubles: {{ player.doubles }}</p>
-          <p>Triples: {{ player.triples }}</p>
-        </div>
 
-        <!-- likes and comments -->
+                  <!-- likes -->
         <button
           v-if="isLiked"
           @click="unlikePlayer(userLike.id)"
@@ -126,6 +119,36 @@ async function unlikePlayer(id) {
           <span>{{ playerLikes.length }} Likes</span>
         </button>
 
+          <!-- Chart Section -->
+          <div class="container max-w-md mx-auto">
+          <PolarChartArea
+              :labels="[
+                'games',
+                'homeruns',
+                'doubles',
+                'rbi',
+                'runs',
+                'hits',
+                'walks',
+                'war',
+                'strikeouts',
+              ]"
+              :stats="[
+                player.games,
+                player.homeruns,
+                player.doubles,
+                player.rbi,
+                player.runs,
+                player.hits,
+                player.walks,
+                player.war,
+                player.strikeouts,
+              ]"
+            />
+            </div>
+        </div>
+
+<!-- Comments -->
         <div class="mt-12">
           <Comments />
         </div>

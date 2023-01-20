@@ -30,8 +30,8 @@ async function postRegisterForm() {
             src="/img/stadium-trees-phone.png"
             alt="logo"
           />
-          <h1 class="py-9 text-center text-3xl font-extrabold text-gray-900">
-          </h1>
+          <h2 class="mt-6 py-4 text-center text-3xl font-extrabold text-gray-900">
+          </h2>
         </div>
         <div>
           <h2 class="text-center text-3xl font-extrabold mt-5 text-gray-900">Sign Up</h2>
@@ -114,9 +114,9 @@ async function postRegisterForm() {
 
           <div class="flex items-center justify-between">
             <div class="text-sm">
-              <a href="#" class="font-medium text-gray-600 hover:text-gray-500">
+              <!-- <a href="#" class="font-medium text-gray-600 hover:text-gray-500">
                 Forgot your password?
-              </a>
+              </a> -->
             </div>
           </div>
         </form>

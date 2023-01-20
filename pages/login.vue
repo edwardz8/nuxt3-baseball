@@ -14,7 +14,6 @@ definePageMeta({
 const postLoginForm = async function () {
   await loginWithEmail(email.value, password.value);
 };
-
 </script>
 
 <template>
@@ -22,22 +21,15 @@ const postLoginForm = async function () {
     <div class="flex items-center justify-center px-4 sm:px-6 lg:px-8">
       <div class="max-w-md w-full">
         <div>
-          <div class="flex">
-           <!--  <img
+          <div>
+            <img
               class="mx-auto h-24 w-auto"
-              src="/img/hockeyphone.png"
+              src="/img/stadium-trees-phone.png"
               alt="logo"
-            /> -->
-            <h1
-              class="py-9 text-center text-3xl font-extrabold text-gray-900"
-            >
-              fungo fantasy baseball
-            </h1>
+            />
           </div>
 
-          <h2
-            class="mt-6 py-9 text-center text-3xl font-extrabold text-gray-900"
-          >
+          <h2 class="mt-6 py-4 text-center text-3xl font-extrabold text-gray-900">
             Sign in
           </h2>
         </div>
@@ -108,21 +100,18 @@ const postLoginForm = async function () {
                 type="checkbox"
                 class="h-4 w-4 text-gray-600 focus:ring-gray-500 border-gray-300 rounded"
               />
-              <label
-                for="remember-me"
-                class="ml-2 block text-sm text-gray-900"
-              >
+              <label for="remember-me" class="ml-2 block text-sm text-gray-900">
                 Remember me
               </label>
             </div>
 
             <div class="text-sm">
-              <a
-                href="#"
+              <NuxtLink
+                to="/register"
                 class="font-medium text-gray-600 hover:text-gray-500"
               >
-                Forgot your password?
-              </a>
+                Not a member? Register.
+              </NuxtLink>
             </div>
           </div>
 

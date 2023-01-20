@@ -13,7 +13,7 @@ const props = defineProps({
   userId: { type: Number, default: undefined },
 });
 
-const emit = defineEmits(["like-player", "unlike-player"]);
+const emit = defineEmits(["like-player", "unlike-player", "show-details"]);
 
 const likesCount = computed(() => {
   return props.likes.length;
@@ -39,6 +39,10 @@ function likePlayer(id) {
 function unlikePlayer(id, playerId) {
   emit("unlike-player", { id, playerId });
 }
+
+function showDetails(player: Object) {
+  emit('show-details', player)
+}
 </script>
 
 <template>
@@ -55,6 +59,7 @@ function unlikePlayer(id, playerId) {
         {{ props.hitter.team }}
         <br />
       </p>
+      <div class="flex items-end justify-between">
       <NuxtLink
         class="mt-3 py-3 px-3 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-stone-800 text-white hover:bg-emerald-300 hover:text-stone-900 focus:outline-none focus:ring-2 focus:ring-emeerald-300 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800"
         :to="`/players/` + props.hitter.id"
@@ -83,8 +88,7 @@ function unlikePlayer(id, playerId) {
           </svg>
           <span>{{ likesCount }} Likes</span>
         </button>
-        <button
-          v-else-if="userId"
+        <button v-else-if="userId"
           type="button"
           @click="likePlayer(props.hitter.id)"
           class="text-sm mt-1 py-2 px-2 inline-flex justify-center items-center gap-2 font-semibold text-gray-400 hover:text-gray-300"
@@ -105,6 +109,7 @@ function unlikePlayer(id, playerId) {
           </svg>
           <span>{{ likesCount }} Likes</span>
         </button>
+        </div>
       </div>
     </div>
   </div>

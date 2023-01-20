@@ -12,6 +12,8 @@ const perpage = ref(20);
 const page = ref(1);
 const playerLikes = ref(null);
 
+const activePlayer = ref(null);
+
 const { data } = await getHitters();
 
 const total = data.value.length;
@@ -93,6 +95,7 @@ watch(
           <!-- <ArrowRightIcon class="icon stroke" /> -->
         </li>
       </ul>
+      <!-- <OffCanvas :player="activePlayer" @close-me="activePlayer" /> -->
       <div
         class="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-3 px-4"
       >

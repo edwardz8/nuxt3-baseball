@@ -55,36 +55,20 @@ export default defineComponent({
     setup(props) {
         const chartData = {
             labels: [
-                'assists',
-                'goals',
-                'pim',
-                'games',
-                'hits',
-                'powerPlayGoals',
-                'powerPlayPoints',
-                'points',
                 ...props.labels
             ],
             datasets: [
                 {
                     label: 'Player Stats',
                     backgroundColor: [
-                        'orange', 'blue', 'red', 'green', 'orangered', 'yellow', 'purple', 'cyan'
+                        'darkseagreen', '#e7bc91', '#ffcb69', '#98c1d9', '#fe938c', '#ff9770', 'dodgerblue', '#ced4da', '#b8b8ff'
                     ],
                     pointBackgroundColor: 'rgba(179,181,198,1)',
                     pointBorderColor: '#fff',
                     pointHoverBackgroundColor: '#fff',
                     pointHoverBorderColor: 'rgba(179,181,198,1)',
                     data: [
-                        props.stats?.assists,
-                        props.stats?.goals,
-                        props.stats?.pim,
-                        props.stats?.games,
-                        props.stats?.hits,
-                        props.stats?.powerPlayGoals,
-                        props.stats?.powerPlayPoints,
-                        props.stats?.points,
-                        props.stats
+                        ...props.stats
                     ]
                 },
 
@@ -98,7 +82,7 @@ export default defineComponent({
 
         return () =>
             h(PolarArea, {
-                chartData,
+                data: chartData,
                 chartOptions,
                 chartId: props.chartId,
                 width: props.width,
