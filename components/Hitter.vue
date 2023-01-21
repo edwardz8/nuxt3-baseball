@@ -149,18 +149,17 @@ function matchTeamLogo(team) {
 <template>
   <div class="mt-2 rounded-md hover:bg-stone-200 bg-stone-100 ">
     <div class="p-4">
+    <!-- Player Info -->
       <h3 class="text-lg font-bold text-stone-800">
         {{ props.hitter.name }}
       </h3>
       <div class="text-2xl text-stone-700">
       <i :class="matchTeamLogo(props.hitter.team)"></i>
     </div>
-   <!--    <p class="mt-1 text-stone-700 font-semibold">
-        {{ props.hitter.team }}
-      </p> -->
       <div class="flex items-end justify-between">
         <NuxtLink
-          class="mt-3 py-3 px-3 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-stone-800 text-white hover:bg-emerald-300 hover:text-stone-900 focus:outline-none focus:ring-2 focus:ring-emeerald-300 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800"
+          class="mt-3 p-2 inline-flex justify-center items-center gap-2 rounded-md border border-transparent
+          font-semibold text-white bg-gray-500 hover:bg-stone-800 focus:outline-none transition-all text-sm"
           :to="`/players/` + props.hitter.id"
         >
           View Player
@@ -171,7 +170,7 @@ function matchTeamLogo(team) {
           <button
             v-if="isLiked && userId"
             @click="unlikePlayer(userLike.id, props.hitter.id)"
-            class="text-sm mt-1 py-2 px-2 inline-flex justify-center items-center gap-2 font-semibold text-stone-800 hover:text-stone-500"
+            class="text-sm mt-1 py-2 px-2 inline-flex justify-center items-center gap-2 font-md text-stone-800 hover:text-stone-500"
           >
             <svg
               width="24"
@@ -191,7 +190,7 @@ function matchTeamLogo(team) {
             v-else-if="userId"
             type="button"
             @click="likePlayer(props.hitter.id)"
-            class="text-sm mt-1 py-2 px-2 inline-flex justify-center items-center gap-2 font-semibold text-stone-800 hover:text-stone-500"
+            class="text-sm mt-1 py-2 px-2 inline-flex justify-center items-center gap-2 text-stone-800 hover:text-stone-500"
           >
             <svg
               width="20"
