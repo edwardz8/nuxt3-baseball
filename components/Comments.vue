@@ -35,7 +35,7 @@ async function commentPlayer() {
     playerComments.value.unshift({ ...commentRes, user: user.value });
     comment.value = "";
   } catch (error) {
-    console.log(error);
+    // console.log(error);
   } finally {
     commenting.value = false;
   }
@@ -50,7 +50,7 @@ async function deletePlayerComment(id, index) {
 <template>
   <!-- Comments -->
   <div
-    class="p-4 border-t rounded-none rounded-md bg-stone-200 border-stone-300"
+    class="p-4 rounded-md bg-stone-100 border-stone-100 mb-4"
     role="alert"
   >
     <h3 class="font-bold mb-3">Comments</h3>
@@ -60,10 +60,10 @@ async function deletePlayerComment(id, index) {
         required
         type="text"
         placeholder="Enter Comment"
-        class="py-3 px-4 block w-full border focus:outline-none rounded-md text-sm bg-stone-300 border-stone-100 text-stone-900"
+        class="py-3 px-4 block w-full border focus:outline-none rounded-md text-sm bg-stone-200 border-stone-200 text-stone-900"
       />
       <button
-        class="ml-auto block w-20 mt-2 py-2 px-2 rounded-md border-2 border-gray-900 font-semibold text-stone-900 hover:text-stone-100 hover:bg-gray-200 hover:border-gray-800 focus:outline-none transition-all text-sm hover:bg-gray-900 border-gray-900 hover:border-gray-900 text-white focus:ring-gray-900 focus:ring-offset-gray-800"
+        class="ml-auto block w-20 mt-2 py-2 px-2 rounded-md border-2 border-stone-900 font-semibold text-stone-900 hover:text-stone-100 hover:bg-gray-400 hover:border-gray-400 focus:outline-none transition-all text-sm border-gray-400 text-stone-900"
       >
         <div
           v-if="commenting"
