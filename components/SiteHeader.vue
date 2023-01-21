@@ -18,16 +18,6 @@ const user = useState("user");
           <div class="flex items-center justify-end md:flex-1 lg:w-0">
             <User v-if="user" :user="user" />
 
-            <!-- <li class="link">
-              <nuxt-link
-                v-if="!user"
-                to="/register"
-                class="transition duration-500 hover:scale-110 mr-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-gray-800 hover:bg-gray-600"
-              >
-                Sign up
-              </nuxt-link>
-            </li> -->
-
             <li class="link">
               <nuxt-link
                 v-if="!user"
