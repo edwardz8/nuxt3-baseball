@@ -4,7 +4,6 @@ import { useRoute } from "vue-router";
 import { getHitterById } from "~/composables/useHitters";
 import { getUserLikes, addUserLike, removeUserLike } from "~/composables/useLike";
 import { useState } from "#app";
-import matchTeamLogo from "../../../methods.js";
 
 const config = useRuntimeConfig();
 const route = useRoute();
@@ -53,6 +52,110 @@ async function unlikePlayer(id) {
     playerLikes.value.splice(index, 1);
   } catch (error) {}
 }
+
+function matchTeamLogo(team) {
+        switch (team) {
+            case "ATL":
+                return "bbclub-ATL ATL";
+                break;
+            case "HOU":
+                return "bbclub-HOU";
+                break;
+            case "BOS":
+                return "bbclub-BOS BOS";
+                break;
+            case "CLE":
+                return "bbclub-CLE CLE";
+                break;
+            case "MIL":
+                return "bbclub-MIL MIL";
+                break;
+            case "NYY":
+                return "bbclub-NYY NYY";
+                break;
+            case "TB":
+            case "TBR":
+                return "bbclub-TB TB";
+                break;
+            case "BAL":
+                return "bbclub-BAL BAL";
+                break;
+            case "TOR":
+                return "bbclub-TOR TOR";
+                break;
+            case "DET":
+                return "bbclub-DET DET";
+                break;
+            case "KC":
+            case "KCR":
+                return "bbclub-KC KC";
+                break;
+            case "MIN":
+                return "bbclub-MIN MIN";
+                break;
+            case "CWS":
+            case "CHW":
+                return "bbclub-CWS CWS";
+                break;
+            case "OAK":
+                return "bbclub-OAK OAK";
+                break;
+            case "TX":
+                return "bbclub-TEX TEX";
+                break;
+            case "LAA":
+                return "bbclub-LAA LAA";
+                break;
+            case "SEA":
+                return "bbclub-SEA SEA";
+                break;
+            case "WSH":
+            case "WSN":
+                return "bbclub-WSH WSH";
+                break;
+            case "PHI":
+                return "bbclub-PHI PHI";
+                break;
+            case "NYM":
+                return "bbclub-NYM NYM";
+                break;
+            case "MIA":
+                return "bbclub-MIA MIA";
+                break;
+            case "PIT":
+                return "bbclub-PIT PIT";
+                break;
+            case "STL":
+                return "bbclub-STL STL";
+                break;
+            case "CIN":
+                return "bbclub-CIN CIN";
+                break;
+            case "CHI":
+            case "CHC":
+                return "bbclub-CHC CHC";
+                break;
+            case "LAD":
+                return "bbclub-LAD LAD";
+                break;
+            case "ARI":
+                return "bbclub-ARI ARI";
+                break;
+            case "COL":
+                return "bbclub-COL COL";
+                break;
+            case "SF":
+            case "SFG":
+                return "bbclub-SF SF";
+                break;
+            case "SD":
+            case "SDP":
+                return "bbclub-SD SD";
+                break;
+            default:
+                return "bbclub-mlb";
+        }
+    }
 </script>
 
 <template>
@@ -67,17 +170,12 @@ async function unlikePlayer(id) {
           <h2 class="text-2xl font-bold text-gray-800 text-center">
             {{ player.name }}
           </h2>
-          <!--  <img
-            class="mx-auto rounded-t-xl w-32"
-            :src="matchTeamLogo(player.team)"
-            alt="team logo icon"
-          /> -->
-          <!--  <div class="flex-shrink-0 h-5 w-5">
+          <div class="mx-auto flex flex-col items-center text-7xl text-gray-400 mb-2">
             <i :class="matchTeamLogo(player.team)"></i>
-          </div> -->
-          <h5 class="text-md font-bold text-gray-800 text-center">
+          </div>
+       <!--    <h5 class="text-md font-bold text-gray-800 text-center">
             {{ player.team }}
-          </h5>
+          </h5> -->
 
           <!-- likes -->
           <div class="flex flex-col items-center mb-2">

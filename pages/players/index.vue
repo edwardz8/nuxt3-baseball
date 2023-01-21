@@ -97,7 +97,7 @@ function sortedPlayers() {
 <template>
   <main>
     <section>
-      <h2 class="text-2xl mt-3 mb-4 text-center">All Hitters</h2>
+      <h2 class="text-2xl mt-3 mb-4 text-center">All Batters</h2>
       <ul class="prev-next-cont">
         <li class="link-item prev" @click="page -= 1" v-if="page !== 1">
           <!-- <ArrowLeftIcon class="icon stroke" /> -->
@@ -111,7 +111,7 @@ function sortedPlayers() {
       </ul>
 
       <!-- Search -->
-    <!--   <div class="relative text-gray-800 m-2 hidden">
+    <!-- <div class="relative text-gray-800 m-2">
         <input
           type="search"
           name="search"

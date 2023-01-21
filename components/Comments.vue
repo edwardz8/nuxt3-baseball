@@ -35,7 +35,7 @@ async function commentPlayer() {
     playerComments.value.unshift({ ...commentRes, user: user.value });
     comment.value = "";
   } catch (error) {
-    // console.log(error);
+    console.log(error);
   } finally {
     commenting.value = false;
   }

@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { ILike } from "~~/types/ILike";
-import matchTeamLogo from '../methods.js';
 
 const props = defineProps({
   hitter: Object,
@@ -41,25 +40,124 @@ function unlikePlayer(id, playerId) {
 function showDetails(player: Object) {
   emit("show-details", player);
 }
+
+function matchTeamLogo(team) {
+        switch (team) {
+            case "ATL":
+                return "bbclub-ATL ATL";
+                break;
+            case "HOU":
+                return "bbclub-HOU";
+                break;
+            case "BOS":
+                return "bbclub-BOS BOS";
+                break;
+            case "CLE":
+                return "bbclub-CLE CLE";
+                break;
+            case "MIL":
+                return "bbclub-MIL MIL";
+                break;
+            case "NYY":
+                return "bbclub-NYY NYY";
+                break;
+            case "TB":
+            case "TBR":
+                return "bbclub-TB TB";
+                break;
+            case "BAL":
+                return "bbclub-BAL BAL";
+                break;
+            case "TOR":
+                return "bbclub-TOR TOR";
+                break;
+            case "DET":
+                return "bbclub-DET DET";
+                break;
+            case "KC":
+            case "KCR":
+                return "bbclub-KC KC";
+                break;
+            case "MIN":
+                return "bbclub-MIN MIN";
+                break;
+            case "CWS":
+            case "CHW":
+                return "bbclub-CWS CWS";
+                break;
+            case "OAK":
+                return "bbclub-OAK OAK";
+                break;
+            case "TX":
+                return "bbclub-TEX TEX";
+                break;
+            case "LAA":
+                return "bbclub-LAA LAA";
+                break;
+            case "SEA":
+                return "bbclub-SEA SEA";
+                break;
+            case "WSH":
+            case "WSN":
+                return "bbclub-WSH WSH";
+                break;
+            case "PHI":
+                return "bbclub-PHI PHI";
+                break;
+            case "NYM":
+                return "bbclub-NYM NYM";
+                break;
+            case "MIA":
+                return "bbclub-MIA MIA";
+                break;
+            case "PIT":
+                return "bbclub-PIT PIT";
+                break;
+            case "STL":
+                return "bbclub-STL STL";
+                break;
+            case "CIN":
+                return "bbclub-CIN CIN";
+                break;
+            case "CHI":
+            case "CHC":
+                return "bbclub-CHC CHC";
+                break;
+            case "LAD":
+                return "bbclub-LAD LAD";
+                break;
+            case "ARI":
+                return "bbclub-ARI ARI";
+                break;
+            case "COL":
+                return "bbclub-COL COL";
+                break;
+            case "SF":
+            case "SFG":
+                return "bbclub-SF SF";
+                break;
+            case "SD":
+            case "SDP":
+                return "bbclub-SD SD";
+                break;
+            default:
+                return "bbclub-mlb";
+        }
+    }
 </script>
 
 <template>
-  <div class="mt-2 bg-white border rounded-md bg-stone-200 hover:bg-stone-100">
-   <!--  <img class="mx-auto rounded-t-xl w-32"
-      :src="matchTeamLogo(props.hitter.team)"
-      alt="player team logo"
-    /> -->
-<!--   <div class="flex-shrink-0 h-5 w-5">
-      <i :class="matchTeamLogo(props.hitter.team)"></i>
-    </div> -->
+  <div class="mt-2 rounded-md hover:bg-stone-200 bg-stone-100 ">
     <div class="p-4">
       <h3 class="text-lg font-bold text-stone-800">
         {{ props.hitter.name }}
       </h3>
-      <p class="mt-1 text-stone-700 font-semibold">
+      <div class="text-2xl text-stone-700">
+      <i :class="matchTeamLogo(props.hitter.team)"></i>
+    </div>
+   <!--    <p class="mt-1 text-stone-700 font-semibold">
         {{ props.hitter.team }}
-        <br />
-      </p>
+      </p> -->
       <div class="flex items-end justify-between">
         <NuxtLink
           class="mt-3 py-3 px-3 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-stone-800 text-white hover:bg-emerald-300 hover:text-stone-900 focus:outline-none focus:ring-2 focus:ring-emeerald-300 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800"
