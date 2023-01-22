@@ -2,25 +2,13 @@
 const props = defineProps({
   search: {
     type: String,
-    required: true,
+    required: false,
   },
 });
 
-let playerName = ref(search);
-
-const filteredPlayers = computed(() => {
-  return players.value.filter((player) => {
-    player.toLowerCase().includes(input.value.toLowerCase())
-  })
-}) 
-
-/* function filteredPlayers() {
-  return players.filter((player) => {
-    player.toLowerCase().includes(input.value.toLowerCase());
-  });
-} */
-
 const emit = defineEmits(["search"]);
+
+let playerName = ref(props.search);
 
 function handleSubmit(event) {
   event.preventDefault();
@@ -33,7 +21,7 @@ function handleChange(event) {
 </script>
 
 <template>
-  <form>
+  <form class="container mx-auto">
     <label
       for="default-search"
       class="mb-2 text-sm font-medium text-gray-900 sr-only text-white"
@@ -57,16 +45,19 @@ function handleChange(event) {
           ></path>
         </svg>
       </div>
-      <input v-model="playerName" @keyup="handleChange"
+      <input
+        v-model="playerName"
+        @keyup="handleChange"
         type="search"
         id="default-search"
-        class="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500"
-        placeholder="Search ⚾ player by first name"
+        class="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-100 rounded-md bg-gray-100 placeholder-gray-600 text-stone-900"
+        placeholder="Search player by name ⚾ ⚾ ⚾ "
         required
       />
-      <button @click="handleSubmit"
+      <button
+        @click="handleSubmit"
         type="submit"
-        class="text-white absolute right-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 bg-blue-600 hover:bg-blue-700 focus:ring-blue-800"
+        class="text-white absolute right-2.5 bottom-2.5 bg-gray-700 rounded-md text-sm px-4 py-2 bg-gray-600 hover:bg-stone-900"
       >
         Search
       </button>
